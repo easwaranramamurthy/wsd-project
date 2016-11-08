@@ -19,7 +19,8 @@
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
-\usepackage{microtype}      % microtypography
+\usepackage{microtype}   
+\usepackage{amsmath}   % microtypography
 %\usepackage[final]{nips_2016}
 \title{Word Sense Induction and Disambiguation using Context Embeddings}
 
@@ -32,7 +33,9 @@
 % if LaTeX puts 3 of 4 authors names on the first line, and the last
 % on the second line, try using \AND instead of \And before the third
 % author name.
-
+%\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+%\norm{ \biggl(\sum_{n=1}^N \mathbf{P}_{n}\biggr) }
 
 \author{
   Easwaran Ramamurthy \\
@@ -81,13 +84,15 @@
 Recent years have seen the advent of word embedding models as a popular choice for distributional representation of word meaning. These embedding representations are increasingly being used by the community to improve on NLP tasks such as word sense induction (WSI) and word sense disambiguation (WSD). Existing approaches to solve these problems use hand crafted features to represent and cluster context words. We propose to evaluate current methods and develop a new approach that attempts to learn feature representation of context words using deep learning methods such as convolutional neural networks (CNN) and Long short term memory (LSTM).
 \end{abstract}
 
-\section{Problem Definition}
+\section{Introduction}
 
-Word sense induction (WSI) and word sense disambiguation (WSD) are long standing problems in natural language understanding (NLU) and aim at identifying the correct sense of a polysemic word when used in a sentence. A polysemic word is one which can have multiple meanings when used in different contexts. For example, consider the usage of the word “cold” in the phrases “He has a cold” and “The ice is cold”. Specifically, in the first phrase, the usage of the word “cold” points to the common cold and in the second case it points to cold temperature. In WSI, the task is to automatically infer the number of senses of a word while in WSD, the task is to output the correct sense for that word given a fixed set of word senses with their usage. Resolving such ambiguities through WSI and WSD has several applications in fields like information retrieval, machine translation and question answering.
+Word sense disambiguation (WSD) and word sense induction (WSI) aim at identifying the correct sense of a polysemous or homonymous word when used in a sentence. Polysemous words are those words which have different but related senses when used in different contexts. In contrast, homonymous words are those words which have totally different senses when used in different contexts. An example of a homonymous word is “bark” which has two completely different senses when used in the statements “My dog would always bark at mailmen” and “The tree’s bark was a rusty brown”. An example of polysemous word is the occurrence of the word “newspaper” in the two sentences “The newspaper got wet in the rain” and “The newspaper fired some of its editing staff”. Disambiguation of word senses is an important task that has several applications including machine translation, information retrieval and question answering.\\
+Distributed representations of words using vector space models (VSMs) of lexical semantics have recently gained huge popularity in the field of natural language processing and natural language understanding. VSMs represent words as dense, real-valued vector embeddings in a space where semantically and syntactically similar words are closer to each other. Such representations have been shown to improve generalization on a variety of natural language processing tasks (Bengio et al. 2003; Mnih and Hinton, 2007; Collobert and Weston, 2008) specially when there is an opportunity to train on very large corpuses. The recent considerable interest in the CBOW and Skip-gram models of Mikolov et al (2013a), collectively know as word2vec stems from the fact that they are simple log-linear models that can produce word embeddings of high quality from the entire Wikipedia English corpus in less than half a day on a single machine. One notable deficiency in prior work is that these cannot model multiple senses of each word thereby ignoring polysemes and homonyms. In this report, we discuss some of the background work in this area focusing on solving the multi-sense embedding problem, followed by a discussion of some promising methods that can be improved upon. We then propose to come up with ways to learn context embeddings automatically from word embeddings which can be an improvement over traditional approaches that use \textit{tf-idf} or $chi^2$ weighted features. 
 
 \section{Related Work}
+Firth’s distributional hypothesis states that the semantics of a word is reflected in the contexts in which it occurs. Discovering multi-sense word embeddings can therefore be useful for tasks such as WSI and WSD. This is exactly the focus of the seminal paper by Reisinger and Mooney (2010) where they use efficient unsupervised learning to cluster context-specific embeddings of words to produce multiple “sense-specific” prototypes for each word which can capture homonymy as well as polysemy. These multi-prototype models are defined by clustering feature vectors $v(c)$ for each context $c in C(w)$ that appears in the corpus. These feature vectors can either be \textit{tf-idf} or $\chi^2$ weighted features of words appearing in a window of length $S$ around the given word. Semantic similarity between two isolated words or also two words in context can then be measured using different distance measures like average similarity between all pairs of clusters for two words or maximum similarity calculated between the most likely clusters identified for a word in a given context. However, this approach provided no method to select potentially many vectors that capture context specificity for downstream NLP classification tasks.\\
+Then followed the work of Huang et al. which generates context embeddings from pre-trained neural word embeddings followed by computing \textit{tf-idf} weighted sum of words in a context followed by clustering of each context embedding. Each occurrence of the word is then re-labeled using the learned clusters followed by training of a new word model on the labeled embeddings generating sense embeddings. Trask et al’s sense2vec program expanded on this work by eliminating the need for training embedding multiple times and also eliminating the need for a clustering step. The sense2vec model predicts a word sense given surrounding word senses and is very useful in creating efficient word-sense embeddings that can be ingested by a supervised classifier.
 
-Recently, word embedding models \cite{mikolov2013efficient} have been gaining popularity in natural language processing tasks like parsing, machine translation and text classification. Such models aim to learn a representation of every word as a vector in a latent space where words that share similar contexts in the corpus are closer to each other. More recently, Yuan et al \cite{yuan2016word} reported state of the art results on a WSD task on the New Oxford American Dictionary (NOAD) using a word embedding representation as input to an LSTM neural network language model followed by a label propagation method on the resulting graph. Trask et al \cite{trask2015sense2vec} learned embeddings of words and their POS tags to do WSD in which the number of senses of a word is determined by its different POS tags. Neelkantan et al \cite{neelakantan2015efficient} proposed a Non-Parametric Multi Sense Skip-gram model in which they learn multiple embeddings of polysemous words using context clustering. The approach of Reisinger et al\cite{reisinger2010multi} provides a context dependent vector representation of word meaning using clustering for homonymy and polysemy words. We now describe what we propose to achieve through this project building up on the work done in the papers cited above.
 
 \section{Methods}
 Existing methods use a linear combination of tf-idf weighted word embeddings for creating vectors for context words and apply some sort of clustering algorithm such as K-Means to identify the number of senses of a word. Instead, learning feature representations for context words using deep architectures has been shown to be more efficient in NLU tasks. We plan to replicate the work of Yuan et al \cite{yuan2016word} for WSD and use it as a baseline for our experiments. We also propose to learn unsupervised feature representations of contexts by training convolutional neural network (CNN) and LSTMs on word embeddings. One-hot encoding of the target words could be used to make predictions. Evaluation of our learned representation could be performed on the below mentioned datasets and compared with the earlier state of the art works on these topics.
@@ -109,6 +114,15 @@ Firstly, we aim to understand and implement the previous work in this area and o
 
 
 
+
+\begin{equation}\label{eq:perceptron}
+\begin{split}
+& maximize_{{\alpha_i^{(j)}}, {\phi_i}} \sum_{j=1}^m \norm{ {\mathbf{x}^{(j)}} - {\sum_{i=1}^k {{\alpha_i^{(j)}}{\phi_i}}} }^2 + \lambda{\sum_{i=1}^k S(\alpha_i^{(j)})}  \\
+& \quad\quad{subject\quad{to}} \qquad {\lVert \phi_i \rVert}^2 \leq 1,\quad for\quad i = 1,2,...k
+\end{split}
+\end{equation}
+
+\pagebreak
 %\renewcommand{\bibsection}{\chapter{\bibname}}
 %\newcommand{\bibpreamble}{This text goes between the ``Bibliography''
 %  header and the actual list of references}
