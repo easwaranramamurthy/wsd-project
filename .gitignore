@@ -1,1 +1,5 @@
 .ipynb_checkpoints/Word2Vec_test-checkpoint.ipynb
+datasets/wikipedia_sentences_tokenised.txt
+datasets/wikipedia_sentences_tokenised.txt.gz
+datasets/wikipedia_sentences_tokenised_top_300000000.txt
+datasets/wikipedia_sentences_tokenised_top_2000000.txt
