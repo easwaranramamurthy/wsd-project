@@ -46,11 +46,27 @@ def parallelize(func, iterator, n_jobs, extra):
     extra = tuple(extra)
     return Parallel(n_jobs=n_jobs)(delayed(func)(*(item + extra)) for item in iterator)
 
+
+# parser for REDDIT dataset
+# def iter_comments(loc):
+    # with bz2.BZ2File(loc) as file_:
+        # for i, line in enumerate(file_):
+            # yield ujson.loads(line)['body']
+ 
 def iter_comments(loc):
-    for line in open(loc, encoding = "utf8"):
-        if not line.startswith("<doc id="):
-            for word in line.split():
-                yield word
+    inf = open(loc, 'r', encoding = "utf8")
+    line = inf.readline()
+    while(line):
+        if line.startswith("<doc id="):
+            thisDoc = ""
+            line = inf.readline()
+            while not line.startswith("</doc"):
+                thisDoc = " ".join([thisDoc, line.strip()])
+                line = inf.readline()
+            yield thisDoc
+        line = inf.readline()
+    inf.close()
+
 
 pre_format_re = re.compile(r'^[\`\*\~]')
 post_format_re = re.compile(r'[\`\*\~]$')
@@ -137,3 +153,6 @@ def main(in_loc, out_dir, n_workers=4, load_parses=False):
 
 if __name__ == '__main__':
     plac.call(main)
+
+
+
