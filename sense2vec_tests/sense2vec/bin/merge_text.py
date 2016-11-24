@@ -53,20 +53,30 @@ def parallelize(func, iterator, n_jobs, extra):
         # for i, line in enumerate(file_):
             # yield ujson.loads(line)['body']
  
-def iter_comments(loc):
-    inf = open(loc, 'r', encoding = "utf8")
-    line = inf.readline()
-    while(line):
-        if line.startswith("<doc id="):
-            thisDoc = ""
-            line = inf.readline()
-            while not line.startswith("</doc"):
-                thisDoc = " ".join([thisDoc, line.strip()])
-                line = inf.readline()
-            yield thisDoc
-        line = inf.readline()
-    inf.close()
+# def iter_comments(loc):
+    # inf = open(loc, 'r', encoding = "utf8")
+    # line = inf.readline()
+    # while(line):
+        # if line.startswith("<doc id="):
+            # thisDoc = ""
+            # line = inf.readline()
+            # while not line.startswith("</doc"):
+                # thisDoc = " ".join([thisDoc, line.strip()])
+                # line = inf.readline()
+            # yield thisDoc
+        # line = inf.readline()
+    # inf.close()
 
+def iter_comments(loc):
+    with open(loc, encoding = "utf8") as inf:
+        currDoc = ""
+        for i, line in enumerate(inf):
+            if line.startswith("<doc id="):
+                currDoc = ""
+            elif line.startswith("</doc"):
+                yield currDoc
+            else:
+                currDoc += line.strip()
 
 pre_format_re = re.compile(r'^[\`\*\~]')
 post_format_re = re.compile(r'[\`\*\~]$')
