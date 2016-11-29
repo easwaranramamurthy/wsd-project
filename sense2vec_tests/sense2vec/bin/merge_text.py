@@ -76,7 +76,7 @@ def iter_comments(loc):
             elif line.startswith("</doc"):
                 yield currDoc
             else:
-                currDoc += line.strip()
+                currDoc += line.strip().lower()
 
 pre_format_re = re.compile(r'^[\`\*\~]')
 post_format_re = re.compile(r'[\`\*\~]$')

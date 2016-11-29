@@ -3,3 +3,16 @@ datasets/wikipedia_sentences_tokenised.txt
 datasets/wikipedia_sentences_tokenised.txt.gz
 datasets/wikipedia_sentences_tokenised_top_300000000.txt
 datasets/wikipedia_sentences_tokenised_top_2000000.txt
+outputs/wiki_second_run/0.txt
+outputs/wiki_second_run/1.txt
+outputs/word2vec_out_second_run.syn1neg.npy
+outputs/word2vec_out_second_run
+outputs/wiki_second_run/2.txt
+outputs/.ipynb_checkpoints/sense2vec_similarity_scoring-checkpoint.ipynb
+outputs/wiki_test_sense2vec/1.txt
+outputs/word2vec_out_second_run.syn0.npy
+outputs/wiki_second_run/3.txt
+outputs/wiki_test_sense2vec/1.txt
+outputs/wiki_test_sense2vec/1.txt
+outputs/wiki_test_sense2vec/1.txt
+outputs/wiki_test_sense2vec/1.txt
