@@ -1,0 +1,6 @@
+1768|DATE in|ADP Canada|ENT Events|PROPN from|ADP the_year_1768|DATE in|ADP Canada|ENT .|PUNCT
+1773|NUM in|ADP Canada|ENT Events|PROPN from|ADP the_year_1773|DATE in|ADP Canada|ENT .|PUNCT
+1781|DATE in|ADP Canada|ENT Events|PROPN from|ADP the_year_1781|DATE in|ADP Canada|ENT .|PUNCT
+1784|DATE in|ADP Canada|ENT Events|PROPN from|ADP the_year_1784|DATE in|ADP Canada|ENT .|PUNCT
+1790|DATE in|ADP Canada|ENT Events|PROPN from|ADP the_year_1790|DATE in|ADP Canada|ENT .|PUNCT
+1799|NUM in|ADP Canada|ENT Events|PROPN from|ADP the_year_1799|DATE in|ADP Canada|ENT .|PUNCT
