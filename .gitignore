@@ -11,12 +11,8 @@ outputs/wiki_second_run/2.txt
 outputs/.ipynb_checkpoints/sense2vec_similarity_scoring-checkpoint.ipynb
 outputs/wiki_test_sense2vec/1.txt
 outputs/word2vec_out_second_run.syn0.npy
-outputs/wiki_second_run/3.txt
+outputs/wiki_second_run
 *.ipynb
-SCWS_evaluation.ipynb
 glove.6B.zip
-glove.6B/glove.6B.50d.txt
-glove.6B/glove.6B.100d.txt
-glove.6B/glove.6B.300d.txt
-glove.6B/glove.6B.200d.txt
-~$Poster.pptx
+glove.6B/
+outputs/wiki_third_run

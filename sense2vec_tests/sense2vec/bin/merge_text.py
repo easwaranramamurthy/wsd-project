@@ -52,7 +52,8 @@ def parallelize(func, iterator, n_jobs, extra):
     # with bz2.BZ2File(loc) as file_:
         # for i, line in enumerate(file_):
             # yield ujson.loads(line)['body']
- 
+
+# parser for wikipedia without lower casing            
 # def iter_comments(loc):
     # inf = open(loc, 'r', encoding = "utf8")
     # line = inf.readline()
@@ -67,17 +68,33 @@ def parallelize(func, iterator, n_jobs, extra):
         # line = inf.readline()
     # inf.close()
 
-def iter_comments(loc):
-    with open(loc, encoding = "utf8") as inf:
-        currDoc = ""
-        for i, line in enumerate(inf):
-            if line.startswith("<doc id="):
-                currDoc = ""
-            elif line.startswith("</doc"):
-                yield currDoc
-            else:
-                currDoc += line.strip().lower()
+#parser for wikipedia that converts everything to lowercase
+#def iter_comments(loc):
+    #with open(loc, encoding = "utf8") as inf:
+        #currDoc = ""
+        #for i, line in enumerate(inf):
+            #if line.startswith("<doc id="):
+                #currDoc = ""
+            #elif line.startswith("</doc"):
+                #yield currDoc
+            #else:
+                #currDoc += line.strip().lower()
 
+#parser for MSH
+def iter_comments(loc):
+    for filename in os.listdir(loc):
+        if filename.endswith(".arff"):
+            with open(os.path.join(loc, filename)) as inf:
+                for line in inf:
+                    if not line.startswith("@") and not len(line.strip())==0:
+                        data = line.strip()
+                        sentence = data.split("\"")[1]
+                        sentence = sentence.replace("<e>", "")
+                        sentence = sentence.replace("</e>", "")
+                        sentence = sentence.lower()
+                        yield sentence
+                                
+                
 pre_format_re = re.compile(r'^[\`\*\~]')
 post_format_re = re.compile(r'[\`\*\~]$')
 url_re = re.compile(r'\[([^]]+)\]\(%%URL\)')

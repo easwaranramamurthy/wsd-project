@@ -1,0 +1,65 @@
+star|PROPN
+
+[(u'Julianne_Moore|ENT', 0.869785487651825),
+ (u'Rip_Torn|ENT', 0.8680943846702576),
+ (u'Winona_Ryder|ENT', 0.8653519749641418),
+ (u'Billy_Bob_Thornton|ENT', 0.8636248111724854),
+ (u'Bill_Murray|ENT', 0.8626019954681396),
+ (u'Simon_Pegg|ENT', 0.8625357747077942),
+ (u'Eugene_Levy|ENT', 0.8603965044021606),
+ (u'Jack_Lord|ENT', 0.8603924512863159),
+ (u'Tommy_Lee_Jones|ENT', 0.8602581024169922),
+ (u'Dave_Thomas|ENT', 0.8602332472801208)]
+ 
+ 
+ star|NOUN
+ 
+ [(u'stars|NOUN', 0.7900665402412415),
+ (u'the_Hollywood_Walk_of_Fame|ENT', 0.6807069182395935),
+ (u'Vega|ENT', 0.6356841921806335),
+ (u'nosed_mole|NOUN', 0.6247982382774353),
+ (u'guest|VERB', 0.6089270710945129),
+ (u'newcomer|NOUN', 0.5823475122451782),
+ (u'Roger_Ebert|ENT', 0.580734372138977),
+ (u'crossed_lovers|NOUN', 0.5760847926139832),
+ (u'brightest|ADJ', 0.5759526491165161),
+ (u'superstar|NOUN', 0.5730941295623779)]
+ 
+ 
+ star|VERB
+ [(u'reprise|VERB', 0.881721019744873),
+ (u'lead_role|NOUN', 0.8685746788978577),
+ (u'feature_film|NOUN', 0.8525943160057068),
+ (u'next_film|NOUN', 0.8524661064147949),
+ (u'third_film|NOUN', 0.8469393849372864),
+ (u'supporting_role|NOUN', 0.842186450958252),
+ (u'starring_role|NOUN', 0.8418307304382324),
+ (u'small_role|NOUN', 0.8372653722763062),
+ (u'cast_member|NOUN', 0.8317290544509888),
+ (u'Steven_Spielberg|ENT', 0.8297404646873474)]
+ 
+ 
+ star|ADJ
+ [(u'hooker|NOUN', 0.8469051122665405),
+ (u'Dizzy_Dean|ENT', 0.8453311920166016),
+ (u'Brian_Urlacher|ENT', 0.8413357138633728),
+ (u'Derrek_Lee|ENT', 0.8410996198654175),
+ (u'mitt|NOUN', 0.8382997512817383),
+ (u'Darryl_Strawberry|ENT', 0.8356831669807434),
+ (u'slam|NOUN', 0.8345222473144531),
+ (u'Chris_Carpenter|ENT', 0.8342206478118896),
+ (u'treble|ADJ', 0.8338474631309509),
+ (u'mustachioed|ADJ', 0.832440197467804)]
+ 
+ 
+ star|ENT
+ [(u'Swan|ENT', 0.7848789095878601),
+ (u'Jumbo|PROPN', 0.760624885559082),
+ (u'Triumph|ENT', 0.7473487854003906),
+ (u'Winston|ENT', 0.7399575710296631),
+ (u'Box|ENT', 0.7369973659515381),
+ (u'Cherry|ENT', 0.7358654141426086),
+ (u'Little|ENT', 0.7332677841186523),
+ (u'Ben_&|ENT', 0.729547381401062),
+ (u'Carlin|ENT', 0.7254533767700195),
+ (u'Dove|ENT', 0.724540114402771)]
