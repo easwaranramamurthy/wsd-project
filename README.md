@@ -1,27 +1,9 @@
-Midway Report Guidelines
-Midway report (4 pages excluding references)
+# Word Sense Disambiguation Project for 10-701
 
-Your midway report will be graded based on the following points:
-Introduction: What are you trying to solve? Why is it important?
+##Sense2Vec Modifications
 
-* Related work: Previous works done related to your topic that may serve as baseline.
+These are present in sense2vec_tests/sense2vec. Most of this code is forked from https://github.com/explosion/sense2vec with modifications included for parsing wikipedia dataset.
 
-* Methods: What methods have you completed till now? How do you hope to improve on the work which you have already done?  Which techniques do you plan to apply? What is your motivation behind these techniques? (You are highly encouraged to come up with an original idea of your own or interesting applications rather than simply implementing or applying existing ML algorithms) 
+A shortened version of the Wikipedia dataset is provided in datasets/wikipedia_sentences_tokenised_top_100000.txt.
 
-* Dataset: Description of dataset.  It is important to explain this at least briefly so we can accurately evaluate the methods applied to your problem. What is your dataset? What are your inputs from this dataset?  What is your output? Is your dataset complete? (E.g. was preprocessing necessary?)
 
-* Preliminary Results: If available.
-
-* Evaluation of Method: Evaluation of preliminary work, if available. How do you plan to evaluate your final method?
-
-* Goals, Timeline and Division of work: Did you meet the goal for midway report you set in the project proposal? Provide a rough timeline of your plan ahead and job to be done by each team member.
-
-* References and citations: Clean and correctly formatted citations and bibliography.
-
-* Clarity of writing: The report should be organized clearly and well written.
-
-* NIPS format: Use NIPS format for all your reports.
-
-* Length: Don't exceed the page limit (4 pages excluding reference).
- 
-* Deadline for midway report: 11/7/16
